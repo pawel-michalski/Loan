@@ -1,0 +1,39 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    compile group: 'com.h2database', name: 'h2', version: '1.4.193'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'joda-time', name: 'joda-time', version: '2.3'
+    // niestety dokumentacja mówi, że dla H2 nie działa. Nie można zapisać joda Time.
+    compile group: 'org.hibernate', name: 'hibernate-java8', version: '5.1.0.Final'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    // https://mvnrepository.com/artifact/org.springframework/spring-test
+
+
+}
