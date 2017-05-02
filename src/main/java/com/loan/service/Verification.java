@@ -1,5 +1,5 @@
-package com.example.service;
+package com.loan.service;
 
 public interface Verification {
-    void veryfy();
+    void verify();
 }

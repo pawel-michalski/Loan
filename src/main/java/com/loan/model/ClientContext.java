@@ -1,4 +1,4 @@
-package com.example.model;
+package com.loan.model;
 
 import javax.persistence.*;
 import java.util.List;

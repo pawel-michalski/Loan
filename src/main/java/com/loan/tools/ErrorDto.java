@@ -1,7 +1,20 @@
 package com.loan.tools;
 
-/**
- * Created by FreshAdmin on 2017-05-02.
- */
-public class ErrorDto {
+
+public class ErrorDto{
+    private String message;
+
+    public ErrorDto(){}
+
+    public ErrorDto(String message){
+        this.message = message;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
+    }
 }

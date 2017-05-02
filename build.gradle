@@ -28,7 +28,7 @@ dependencies {
     // https://mvnrepository.com/artifact/com.h2database/h2
     compile group: 'com.h2database', name: 'h2', version: '1.4.193'
 
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+
     compile group: 'joda-time', name: 'joda-time', version: '2.3'
     // niestety dokumentacja mówi, że dla H2 nie działa. Nie można zapisać joda Time.
     compile group: 'org.hibernate', name: 'hibernate-java8', version: '5.1.0.Final'

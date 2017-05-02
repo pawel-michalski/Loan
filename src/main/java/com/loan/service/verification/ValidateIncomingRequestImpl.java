@@ -1,16 +1,9 @@
-package com.example.service.verification;
+package com.loan.service.verification;
 
-import com.example.model.ClientContext;
-import com.example.model.Loan;
-import com.example.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Component
 public class ValidateIncomingRequestImpl implements  ValidateIncomingRequest {

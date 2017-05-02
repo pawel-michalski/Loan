@@ -1,4 +1,4 @@
-package com.example.utils;
+package com.loan.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

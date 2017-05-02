@@ -1,7 +1,5 @@
-package com.example.service.verification;
+package com.loan.service.verification;
 
-
-import com.example.model.Loan;
 
 public interface ValidateIncomingRequest {
 

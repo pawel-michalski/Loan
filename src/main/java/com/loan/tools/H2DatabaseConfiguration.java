@@ -1,4 +1,4 @@
-package com.example.tools;
+package com.loan.tools;
 
 import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,8 +1,8 @@
-package com.example.scheduler;
+package com.loan.scheduler;
 
-import com.example.service.ClientContextService;
-import com.example.service.LoanService;
-import com.example.service.Verification;
+import com.loan.service.ClientContextService;
+import com.loan.service.LoanService;
+import com.loan.service.Verification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class Scheduler {
 
     @Scheduled(fixedRate = 5000)
     public void processLoans() {
-        verification.veryfy();
+        verification.verify();
     }
 
 }

@@ -1,6 +1,6 @@
-package com.example.service;
+package com.loan.service;
 
-import com.example.model.Loan;
+import com.loan.model.Loan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -26,7 +26,9 @@ public interface LoanService extends JpaRepository<Loan, Long> {
 
 
     List<Loan> findAllByIfWasAlradyCheckedIsFalse();
+    Loan findById(Long id);
 
+    List<Loan> findAllByRiskFalse();
 
 
 }

@@ -1,17 +1,17 @@
-package com.example.controller;
+package com.loan.controller;
 
-import com.example.model.ClientContext;
-import com.example.model.Loan;
-import com.example.service.ClientContextService;
-import com.example.service.LoanService;
-import com.example.service.verification.ValidateIncomingRequest;
-import com.example.utils.DateUtils;
+import com.loan.model.ClientContext;
+import com.loan.model.Loan;
+import com.loan.service.ClientContextService;
+import com.loan.service.LoanService;
+import com.loan.service.verification.ValidateIncomingRequest;
+import com.loan.tools.ErrorDto;
+import com.loan.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -20,13 +20,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by FreshAdmin on 2017-04-29.
- */
 @RestController
 public class LoanController {
-    private final String CHECK_PARAMETERS = "Check parameters. Amount or days";
-    private final String CREATED = "Request has been added. Expected for verification";
+
     @Autowired
     private ClientContextService clientContextService;
     @Autowired
@@ -41,7 +37,7 @@ public class LoanController {
                                         @RequestParam String firstName,
                                         @RequestParam String lastName) {
 
-        if (validateIncomingRequest.checkData(amount,days,firstName,lastName,request.getRemoteAddr())) {
+        if (validateIncomingRequest.checkData(amount, days, firstName, lastName, request.getRemoteAddr())) {
 
             List<Loan> lista = new ArrayList<Loan>();
             Loan tempLoan = new Loan();
@@ -55,11 +51,40 @@ public class LoanController {
             client.setLoanList(lista);
             client.setIPAddress(request.getRemoteAddr());
             clientContextService.save(client);
-            return new ResponseEntity<>(CREATED, HttpStatus.CREATED);
+
+            return new ResponseEntity<>("created", HttpStatus.CREATED);
 
         }
-        return new ResponseEntity<>(CHECK_PARAMETERS,
+        return new ResponseEntity<>("check parameters",
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(path = "loan/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getLoanById(@PathVariable Long id) {
+        Loan loan=null;
+        try {
+            loan = loanService.findById(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErrorDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if(loan!=null)
+        return new ResponseEntity<>(loan, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(new ErrorDto("Loan not found"), HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(path = "loans", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getLoans() {
+        List<Loan> loans=null;
+        try {
+            loans=loanService.findAllByRiskFalse();
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ErrorDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if(loans!=null)
+            return new ResponseEntity<>(loans, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(new ErrorDto("Loans not found"), HttpStatus.NOT_FOUND);
     }
 
 }
