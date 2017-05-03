@@ -36,12 +36,12 @@ public class CreateTestData {
     public static List<Loan> serveLoanListOK() {
         List<Loan> loanList = new ArrayList<>();
         Loan loan = new Loan();
-        loan.setAmount(new BigDecimal("200"));
+        loan.setAmount(new BigDecimal("200.55"));
         loan.setRisk(false);
         loan.setLoanTo(DateUtils.asDate(LocalDate.now().plusDays(15)));
         loan.setAffected(new Date());
         Loan loan2 = new Loan();
-        loan2.setAmount(new BigDecimal("300"));
+        loan2.setAmount(new BigDecimal("1358"));
         loan2.setRisk(false);
         loan2.setLoanTo(DateUtils.asDate(LocalDate.now().plusDays(5)));
         loan2.setAffected(new Date());
@@ -86,7 +86,7 @@ public class CreateTestData {
     public static Loan createLoan() {
         Loan loan = new Loan();
         loan.setAffected(new Date());
-        loan.setAmount(new BigDecimal("2000.00"));
+        loan.setAmount(new BigDecimal("2234.55"));
         loan.setRisk(false);
         loan.setDescription("desc");
         return loan;

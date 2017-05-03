@@ -28,7 +28,7 @@ public class LoanTest {
 
     @Test
     public void getAmount() throws Exception {
-        assertEquals(loan.getAmount(), new BigDecimal("200"));
+        assertEquals(loan.getAmount(), new BigDecimal("200.55"));
     }
 
     @Test
