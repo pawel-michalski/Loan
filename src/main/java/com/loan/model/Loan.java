@@ -8,6 +8,7 @@ import java.util.Date;
 public class Loan {
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -18,8 +19,7 @@ public class Loan {
     @Column(name = "checked")
     private boolean ifWasAlradyChecked;
     private String description;
-    boolean risk;
-
+    private boolean risk;
     public Loan(Date loanTo, Date affected, BigDecimal amount, boolean risk) {
         this.loanTo = loanTo;
         this.affected = affected;
@@ -28,7 +28,6 @@ public class Loan {
     }
 
     public Loan() {
-
     }
 
     public Long getId() {

@@ -13,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class LoanTest {
 
-    private Loan loan = serveLoanListOK().get(0);
+    private final Loan loan = serveLoanListOK().get(0);
 
     @Test
     public void getLoanTo() throws Exception {

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class Scheduler {
 
     private static final Logger log = LoggerFactory.getLogger(Scheduler.class);
-
+    @Autowired
     private ClientContextService repo;
     @Autowired
     private LoanService loanService;

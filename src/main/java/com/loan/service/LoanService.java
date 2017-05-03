@@ -27,7 +27,6 @@ public interface LoanService extends JpaRepository<Loan, Long> {
 
     List<Loan> findAllByIfWasAlradyCheckedIsFalse();
     Loan findById(Long id);
-
     List<Loan> findAllByRiskFalse();
 
 

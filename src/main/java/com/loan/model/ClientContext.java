@@ -7,6 +7,9 @@ import java.util.List;
 @Entity(name = "Client")
 public class ClientContext {
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id")
+    private List<Loan> loanList;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -14,16 +17,6 @@ public class ClientContext {
     private String IPAddress;
     private String firstName;
     private String lastName;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
-    List<Loan> loanList;
-
-    public ClientContext(String IPAddress, String firstName, String lastName, List<Loan> loanList) {
-        this.IPAddress = IPAddress;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.loanList = loanList;
-    }
 
     public ClientContext() {
     }

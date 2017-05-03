@@ -21,18 +21,15 @@ import java.util.List;
 public class VerificationImpl implements Verification {
 
     private static final Logger log = LoggerFactory.getLogger(VerificationImpl.class);
-
+    private static final SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
     @Autowired
     private LoanService loanService;
-
     @Value("${max_amount}")
     private BigDecimal max_amount;
     @Value(("${time_from}"))
     private String time_from;
     @Value(("${time_end}"))
     private String time_to;
-    private static final SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
-
 
     @Override
     public void verify() {
@@ -48,11 +45,8 @@ public class VerificationImpl implements Verification {
             }
             // check all off asks not alrady checked.
             if(!loanService.findAllByIfWasAlradyCheckedIsFalse().isEmpty()){
-
-
                 List<Loan> withoutRisk=new ArrayList<>();
                 List<Loan> withRisk=new ArrayList<>();
-
                 List<Loan> listForDecide = loanService.findAllByIfWasAlradyCheckedIsFalse();
                 log.info("Found " + listForDecide.size() + " to verification");
                 listForDecide.forEach(item->{
@@ -98,8 +92,6 @@ public class VerificationImpl implements Verification {
     }
 
     private void save(List<Loan> listToSave) {
-        listToSave.forEach(item->{
-            loanService.save(item);
-        });
+       loanService.save(listToSave);
     }
 }

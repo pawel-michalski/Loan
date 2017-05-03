@@ -7,6 +7,7 @@ import com.loan.service.ClientContextService;
 import com.loan.service.LoanService;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -35,13 +36,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-
-
 @SpringBootTest
 public class LoanControlerTest {
 
-    @Mock
-    View mockView;
+
     private MockMvc mockMvc;
     @Autowired
     private LoanController loanController;
@@ -52,11 +50,7 @@ public class LoanControlerTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
-    private ValidateIncomingRequest validateIncomingRequest;
-
-    public LoanControlerTest() {
-
-    }
+    public LoanControlerTest() {}
 
 
     @Before
@@ -76,16 +70,7 @@ public class LoanControlerTest {
         all.forEach(item -> loanService.delete(item.getId()));
     }
 
-    @Test
-    public void getLoanByIdTest() throws Exception {
 
-        mockMvc.perform(get("/loan/1"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(jsonPath("$.amount", is(2234.55)))
-                .andExpect(jsonPath("$.ifWasAlradyChecked", is(false)))
-                .andExpect(jsonPath("$.risk", is(false)));
-    }
 
     @Test
     public void getLoanByIdTestNotFound() throws Exception {

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClientContextService extends JpaRepository<ClientContext, Long> {
 
-  public void  deleteAll();
+    void  deleteAll();
 }

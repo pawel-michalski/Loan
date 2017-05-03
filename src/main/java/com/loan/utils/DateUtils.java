@@ -9,25 +9,12 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by FreshAdmin on 2017-04-29.
- */
+
 public class DateUtils {
     public static Date asDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 
-    public static Date asDate(LocalDateTime localDateTime) {
-        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
-    }
-
-    public static LocalDate asLocalDate(Date date) {
-        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
-    }
-
-    public static LocalDateTime asLocalDateTime(Date date) {
-        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
-    }
     public static boolean isTimeBetweenTwoTime(String from, String to, String askLoanTime) throws ParseException {
         String reg = "^([0-1][0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$";
         if (from.matches(reg) && to.matches(reg) && askLoanTime.matches(reg)) {
